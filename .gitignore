@@ -24,3 +24,11 @@ pnpm-debug.log*
 .vscode/
 .env.local
 node_modules/
+
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform/.terraform.lock.hcl
+terraform/.terraform/

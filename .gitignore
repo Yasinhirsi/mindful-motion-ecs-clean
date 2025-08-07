@@ -1,50 +1,33 @@
 # 
 
-# Node / Next.js
+# Node modules and build output
 node_modules/
 .next/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+out/
+dist/
+build/
 
-# Lock files (keep only one)
-bun.lock
-package-lock.json
-yarn.lock
-
-# Env / secrets
+# Env files (keep secrets local)
 .env
-.env.*
-!.env.example
 .env.local
 .env.*.local
+!.env.example
 
 # Logs
 *.log
 
-# Coverage reports (if any)
-coverage/
-*.lcov
-
-# OS / IDE
+# OS and editor files
 .DS_Store
-.AppleDouble
-.LSOverride
 .vscode/
 .idea/
-*.code-workspace
+*.swp
+*~
 
-# Terraform
+# Terraform state and secrets
 **/.terraform/
 *.tfstate
 *.tfstate.*
 *.plan
-crash.log
-# KEEP the lockfile committed:
-# .terraform.lock.hcl
-
-# Terraform secrets
 terraform/*.tfvars
 terraform/*.tfvars.json
 
@@ -52,19 +35,10 @@ terraform/*.tfvars.json
 .supabase/temp/
 supabase/.temp/
 
-# Docker overrides and local configs
+# Docker local override files
 docker-compose.override.yml
 
-# Local build folders (if any)
-out/
-dist/
-build/
-
-# Editor swap or backup files
-*~
-*.swp
-*.swo
-
-# Temporary files
-*.tmp
-*.temp
+# Lock files - keep whichever you use, ignore the others
+bun.lock
+package-lock.json
+yarn.lock

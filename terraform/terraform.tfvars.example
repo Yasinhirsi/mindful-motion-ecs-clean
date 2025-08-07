@@ -1,0 +1,12 @@
+# terraform/terraform.tfvars.example
+vpc_name               = "YOUR_VPC_NAME"
+subnet_public_a_name   = "public-subnet-1"
+subnet_public_b_name   = "public-subnet-2"
+alb_name               = "mindful-motion-alb"
+ecs_cluster_name       = "mindful-motion-cluster"
+container_image_url    = "123456789012.dkr.ecr.eu-west-2.amazonaws.com/mindful-motion:latest"
+next_public_supabase_url      = "https://YOUR-PROJECT.supabase.co"
+next_public_supabase_anon_key = "YOUR-ANON-KEY"
+execution_role_arn     = "arn:aws:iam::<acct>:role/ecsTaskExecutionRole"
+task_role_arn          = "arn:aws:iam::<acct>:role/ecsTaskRole"
+acm_domain_name        = "tm.example.com"

@@ -1,4 +1,9 @@
 output "alb_dns_name" {
-  value       = aws_lb.alb.dns_name
-  description = "DNS name of the ALB (use in Cloudflare)"
+  description = "DNS name of the ALB (point Cloudflare CNAME here)"
+  value       = module.alb.alb_dns_name
+}
+
+output "ecs_service_name" {
+  value       = module.ecs_cluster.ecs_service_name
+  description = "Name of the ECS Service"
 }

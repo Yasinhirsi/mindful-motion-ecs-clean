@@ -21,7 +21,7 @@ This repo holds the infrastructure-as-code and deployment configs to run Mindful
 
 ## 🏗 Architecture
 
-![Mindful Motion Architecture](./docs/NEW.png)
+![Mindful Motion Architecture](https://github.com/user-attachments/assets/5e12555e-8746-4f2e-8d1d-36eb5602ce56)
 _Figure 1: AWS infrastructure architecture for Mindful Motion._
 
 

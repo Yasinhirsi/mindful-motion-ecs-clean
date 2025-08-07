@@ -1,120 +1,75 @@
-# Mindful Motion
+# 🚀 Mindful Motion — ECS Deployment Project
 
-Mindful Motion is a Dockerized Next.js application for mental health tracking, emotion analysis, and Supabase-powered session scheduling.
+## 👋 Overview
 
-## 🧠 Features
+Mindful Motion is an AI-powered wellness app that helps you prioritize your **mental and physical wellbeing** through sentiment analysis, facial emotion detection, and therapist session scheduling — all wrapped in a smooth, user-friendly experience.
 
-- Facial emotion detection using face-api.js + TensorFlow.js
-- Sentiment-aware daily check-ins
-- Secure Supabase integration (auth, database, real-time)
-- Dockerized for local development and cloud deployment
+This repo holds the infrastructure-as-code and deployment configs to run Mindful Motion on **AWS ECS Fargate** using Terraform modules, with a focus on scalability, security, and automation.
 
 ---
 
-## 🚀 Quick Start (with Docker)
+## ✨ Features
 
-### 📁 1. Clone the repository
+- 🐳 Containerized Next.js app with Supabase backend  
+- ⚙️ Deployed on AWS ECS Fargate behind an Application Load Balancer (ALB)  
+- 🔐 HTTPS powered by AWS Certificate Manager (ACM)  
+- 📦 Infrastructure fully managed with Terraform modules  
+- ☁️ Remote Terraform state stored on AWS S3, with DynamoDB for state locking  
+- 🌐 Custom domain via Cloudflare DNS
+
+---
+
+## 🏗 Architecture
+
+![Mindful Motion Architecture](./docs/NEW.png)
+_Figure 1: AWS infrastructure architecture for Mindful Motion._
+
+
+
+
+Traffic flows through:
+
+- 🌍 **Cloudflare** — DNS & HTTPS termination  
+- 🔄 **AWS ALB** — routes requests securely  
+- 🛠 **ECS Fargate** — runs containerized Next.js app  
+- 🗄 **S3 & DynamoDB** — Terraform remote state & locking  
+- 🛡 **Supabase** — backend for auth and realtime data
+
+---
+
+## 🚀 Getting Started
+
+Make sure you have your AWS CLI configured with the right permissions, then:
+
+### Terraform
 
 ```bash
-git clone git@github.com:Yasinhirsi/mindful-motion-ecs.git
-cd mindful-motion-ecs
+terraform init
+terraform apply
 ```
 
-### 🔐 2. Get Supabase credentials
+## This provisions:
 
-> ⚠️ `.env` is not included in this repository for security reasons.  
-> To run the app with full functionality, **please request the `.env` file** directly from the author.
+🔹 VPC with public subnets
 
-Once received, place it in the project root:
+🔹 ECS cluster & Fargate service
 
-```env
-# .env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+🔹 ALB with HTTP/HTTPS listeners
 
----
+🔹 ECR container repository
 
-### 🐳 3. Run using Docker Compose
+🔹 S3 bucket for Terraform state
+
+🔹 DynamoDB table for state locking
+
+## Docker🐳 
+Build, tag, and push your app image to ECR:
 
 ```bash
-export $(cat .env | xargs)
-docker-compose up --build
+docker build -t mindful-motion .
+docker tag mindful-motion:latest <ECR_REPO_URL>:latest
+docker push <ECR_REPO_URL>:latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
-
----
-
-## 🧪 Development (non-Docker)
-
-```bash
-npm install --legacy-peer-deps
-npm run dev
-```
-
----
-
-## 🐋 Docker Overview
-
-- ✅ Multi-stage production-ready Dockerfile
-- ✅ `.dockerignore` for fast, clean builds
-- ✅ `.env` values injected at build and runtime
-- ✅ Works locally and deployable to ECS/ECR
-
----
-
-## 📦 Tech Stack
-
-| Layer        | Tool                  |
-|--------------|------------------------|
-| Frontend     | Next.js 15 + React     |
-| Backend      | Supabase (Postgres)    |
-| Styling      | Tailwind CSS + shadcn  |
-| ML/AI        | TensorFlow.js + face-api.js |
-| DevOps       | Docker, Docker Compose |
-
----
-
-## 📁 Project Structure
-
-```
-mindful-motion/
-├── app/                 # Next.js App Router pages
-├── components/          # UI components
-├── supabase.ts          # Supabase client
-├── Dockerfile           # Container build file
-├── docker-compose.yml   # Local Docker orchestration
-└── .env.example         # Required environment variables
-```
-
----
-
-## 📚 Deployment
-
-This project is ready for deployment via:
-
-- ✅ Docker Compose
-- 🔜 GitHub Actions + ECR + ECS Fargate (optional extension)
-
----
-
-## 🔐 Security
-
-- `.env` is excluded from GitHub via `.gitignore`
-- `anon` key is scoped to limited public access
-- Supabase security can be hardened via RLS
-
----
-
-## 📄 License
-
-MIT — feel free to fork and build upon it.
-
----
-
-## 📬 Contact
-
-For access to the `.env` file or deployment help, contact:  
-📧 yasinhirsi3@gmail.com  
-🔗 https://yasinhirsi.com
+## 🌐 Live Demo
+Check out the app live at 👉 https://tm.yasinhirsi.com

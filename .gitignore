@@ -8,15 +8,32 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Lock files (keep only one)
+bun.lock
+package-lock.json
+yarn.lock
+
 # Env / secrets
 .env
 .env.*
 !.env.example
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Coverage reports (if any)
+coverage/
+*.lcov
 
 # OS / IDE
 .DS_Store
+.AppleDouble
+.LSOverride
 .vscode/
 .idea/
+*.code-workspace
 
 # Terraform
 **/.terraform/
@@ -30,3 +47,24 @@ crash.log
 # Terraform secrets
 terraform/*.tfvars
 terraform/*.tfvars.json
+
+# Supabase temp/cache files
+.supabase/temp/
+supabase/.temp/
+
+# Docker overrides and local configs
+docker-compose.override.yml
+
+# Local build folders (if any)
+out/
+dist/
+build/
+
+# Editor swap or backup files
+*~
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
